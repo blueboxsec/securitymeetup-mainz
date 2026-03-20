@@ -590,6 +590,99 @@
     animation: glow-pulse 1.1s steps(1) infinite;
   }
 
+  /* RHYTHM */
+  .rhythm {
+    padding: 100px clamp(24px, 8vw, 120px);
+    background: var(--bg);
+    text-align: center;
+  }
+  .rhythm-inner { max-width: 860px; margin: 0 auto; }
+  .rhythm-headline {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .rhythm-sub {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+  .rhythm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .rhythm-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s;
+  }
+  .rhythm-card:hover { border-color: rgba(0,255,65,0.2); }
+  .rhythm-card.next {
+    border-color: rgba(0,255,65,0.35);
+    background: #0d1a0d;
+    position: relative;
+    overflow: hidden;
+  }
+  .rhythm-card.next::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .rhythm-card-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .rhythm-card.next .rhythm-card-badge { color: var(--accent); }
+  .rhythm-card-date {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .rhythm-card.next .rhythm-card-date {
+    font-size: 20px;
+    color: var(--accent);
+    text-shadow: 0 0 16px rgba(0,255,65,0.3);
+  }
+  .rhythm-card-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+  .rhythm-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.07em;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 10px 20px;
+  }
+  .rhythm-note-icon { font-size: 14px; }
+
   /* CITY IMAGE */
   .city-image {
     position: relative;
@@ -719,9 +812,9 @@
         Security-Gespräche<br>ohne <span>Bullshit</span>.
       </h2>
       <div class="about-text">
-        <p>Das Security Meetup Mainz ist ein <strong>informelles Treffen für Menschen aus der IT-Security</strong> – ob technisch tief im Stack oder auf Managementebene.</p>
+        <p>Das Security Meetup Mainz ist ein <strong>monatliches, informelles Treffen für Menschen aus der IT-Security</strong> – ob technisch tief im Stack oder auf Managementebene.</p>
         <p>Kein Konferenzformat. Keine Bühne. Keine Sponsorenpräsentationen. Stattdessen: ein gutes Restaurant, ein Tisch, und Gespräche unter Peers, die wirklich was zu sagen haben.</p>
-        <p>Wir treffen uns regelmäßig in Mainz – weil Security nicht nur in großen Städten passiert, und weil echter Austausch mehr bringt als jede Keynote.</p>
+        <p>Wir treffen uns <strong>jeden letzten Donnerstag im Monat</strong> in Mainz – weil Security nicht nur in großen Städten passiert, und weil echter Austausch mehr bringt als jede Keynote.</p>
       </div>
     </div>
     <div class="principle-list">
@@ -789,6 +882,39 @@
   </div>
 </section>
 
+<!-- RHYTHM -->
+<section class="rhythm">
+  <div class="rhythm-inner">
+    <div class="section-label" style="justify-content:center; margin-bottom:28px;">Der Rhythmus</div>
+    <div class="rhythm-headline">Jeden letzten Donnerstag<br>im Monat.</div>
+    <p class="rhythm-sub">Kein einmaliges Event. Eine dauerhafte Community.<br>Mainzer Security-Leute, die sich regelmäßig sehen.</p>
+    <div class="rhythm-grid">
+      <div class="rhythm-card next">
+        <div class="rhythm-card-badge">Nächstes Meeting</div>
+        <div class="rhythm-card-date">Do · 26. März 2026</div>
+        <div class="rhythm-card-note">Mainz · zentrale Lage · kostenlos</div>
+        <a href="https://pretix.eu/securitymeetup/mainz-maerz-26/" target="_blank" rel="noopener" class="btn-primary" style="margin-top:20px; font-size:12px; padding:12px 24px;">Jetzt anmelden →</a>
+      </div>
+      <div class="rhythm-card">
+        <div class="rhythm-card-badge">Danach</div>
+        <div class="rhythm-card-date">Do · 30. April 2026</div>
+        <div class="rhythm-card-note">Anmeldung folgt</div>
+      </div>
+      <div class="rhythm-card">
+        <div class="rhythm-card-badge">Und dann</div>
+        <div class="rhythm-card-date">Do · 28. Mai 2026</div>
+        <div class="rhythm-card-note">Anmeldung folgt</div>
+      </div>
+    </div>
+    <div class="rhythm-note">
+      <span class="rhythm-note-icon">🔔</span>
+      Trag dir den letzten Donnerstag im Monat dauerhaft in den Kalender ein.
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
 <!-- AUDIENCE -->
 <section class="audience" id="audience">
   <div class="audience-header">
@@ -840,7 +966,7 @@
 
     <div class="register-note">
       DO · 26. MÄRZ 2026 · MAINZ · ZENTRALE LAGE · KOSTENFREI<br>
-      SECURITY MEETUP MAINZ · FOR SECURITY PEOPLE
+      MONATLICH · JEDEN LETZTEN DONNERSTAG · SECURITY MEETUP MAINZ
     </div>
   </div>
 </section>
