@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Meetup Mainz – März 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d0a;
+    --surface: #111511;
+    --surface2: #161b16;
+    --border: #1f2b1f;
+    --border2: #2a362a;
+    --accent: #00ff41;
+    --accent-dim: rgba(0,255,65,0.08);
+    --accent-glow: rgba(0,255,65,0.15);
+    --text: #dceadc;
+    --muted: #5a735a;
+    --muted2: #3d503d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* GRID BG */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,65,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,65,0.018) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 48px;
+    background: rgba(10,13,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .nav-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+  }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #0a0d0a;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 9px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover {
+    opacity: 0.88;
+    box-shadow: 0 0 20px rgba(0,255,65,0.4);
+  }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 24px 80px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  .hero-logo svg { overflow: visible; }
+
+  .hero-tagline {
+    margin-top: 36px;
+    font-size: clamp(15px, 2.2vw, 18px);
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 480px;
+    line-height: 1.7;
+  }
+  .hero-tagline em {
+    color: var(--text);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+  }
+
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .chip .icon { font-size: 15px; }
+  .chip .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 48px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #0a0d0a;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 15px 32px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 0 0 rgba(0,255,65,0);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 28px rgba(0,255,65,0.45);
+    transform: translateY(-1px);
+  }
+  .btn-primary .arrow { font-size: 16px; transition: transform 0.2s; }
+  .btn-primary:hover .arrow { transform: translateX(3px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    padding: 15px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .scroll-hint {
+    margin-top: 80px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--muted2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 2s ease infinite;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--muted2), transparent);
+  }
+  @keyframes fadeUp {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 0.9; transform: translateY(4px); }
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 clamp(24px, 8vw, 120px);
+    margin: 0 0 64px;
+  }
+  .section-divider .line { flex: 1; height: 1px; background: var(--border); }
+  .section-divider .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 100px clamp(24px, 8vw, 120px) 80px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '//';
+    opacity: 0.5;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  @media (max-width: 780px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .about-headline {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+  .about-headline span { color: var(--accent); }
+
+  .about-text {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .about-text strong { color: var(--text); font-weight: 500; }
+  .about-text p + p { margin-top: 16px; }
+
+  .principle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .principle {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+    transition: border-color 0.2s;
+  }
+  .principle:hover { border-color: var(--border2); }
+
+  .principle-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .principle-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .principle-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* FORMAT */
+  .format {
+    padding: 80px clamp(24px, 8vw, 120px);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .format-header {
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .format-card {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 28px 26px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .format-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .format-card:hover { border-color: rgba(0,255,65,0.3); transform: translateY(-2px); }
+  .format-card:hover::before { opacity: 1; }
+
+  .format-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted2);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .format-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .format-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* AUDIENCE */
+  .audience {
+    padding: 100px clamp(24px, 8vw, 120px);
+  }
+
+  .audience-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .audience-header h2 {
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .audience-header p {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .audience-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .a-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    padding: 9px 18px;
+    border: 1px solid var(--border2);
+    border-radius: 24px;
+    background: var(--surface2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .a-tag:hover { border-color: rgba(0,255,65,0.3); color: var(--text); }
+  .a-tag.highlight {
+    border-color: rgba(0,255,65,0.25);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  /* REGISTER */
+  .register {
+    padding: 100px clamp(24px, 8vw, 120px);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+
+  .register-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .register-headline {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .register-headline span { color: var(--accent); }
+
+  .register-sub {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .pretix-box {
+    background: #0d120d;
+    border: 1px solid rgba(0,255,65,0.2);
+    border-radius: 12px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .pretix-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .pretix-box::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 120px;
+    background: radial-gradient(ellipse, rgba(0,255,65,0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,255,65,0.2);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .pretix-url {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(14px, 2.5vw, 18px);
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0,255,65,0.4);
+    margin-bottom: 28px;
+    word-break: break-all;
+  }
+
+  .pretix-box .btn-primary {
+    font-size: 14px;
+    padding: 17px 40px;
+  }
+
+  .register-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 36px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted2);
+  }
+  .footer-right {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+
+  /* ANIMATIONS */
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  .blinking-cursor {
+    display: inline-block;
+    width: 14px; height: 28px;
+    background: var(--accent);
+    margin-left: 4px;
+    vertical-align: middle;
+    border-radius: 1px;
+    animation: glow-pulse 1.1s steps(1) infinite;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Security Meetup Mainz</div>
+  <div class="nav-badge">DO · 26. MÄRZ 2026</div>
+  <a href="https://pretix.eu/securitymeetup/mainz-maerz-26/" target="_blank" rel="noopener" class="nav-cta">Anmelden →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Security Meetup Mainz</div>
+
+  <div class="hero-logo">
+    <svg width="min(620px, 90vw)" viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+      <g transform="translate(246, 6)">
+        <rect x="18" y="0" width="76" height="42" rx="12" fill="none" stroke="#00ff41" stroke-width="4"/>
+        <circle cx="37" cy="21" r="5" fill="#00ff41"/>
+        <circle cx="56" cy="21" r="5" fill="#00ff41"/>
+        <circle cx="75" cy="21" r="5" fill="#00ff41"/>
+        <path d="M40 42 L30 56 L56 42Z" fill="#00ff41"/>
+        <circle cx="18" cy="80" r="11" fill="none" stroke="#00ff41" stroke-width="3.5"/>
+        <path d="M0 112 Q0 92 18 92 Q36 92 36 112" fill="none" stroke="#00ff41" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="57" cy="72" r="13" fill="none" stroke="#00ff41" stroke-width="4"/>
+        <path d="M34 112 Q34 88 57 88 Q80 88 80 112" fill="none" stroke="#00ff41" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="96" cy="80" r="11" fill="none" stroke="#00ff41" stroke-width="3.5"/>
+        <path d="M78 112 Q78 92 96 92 Q114 92 114 112" fill="none" stroke="#00ff41" stroke-width="3.5" stroke-linecap="round"/>
+      </g>
+      <text x="310" y="152" font-family="'DM Sans', sans-serif" font-size="62" font-weight="700" fill="#dceadc" text-anchor="middle">security</text>
+      <text x="310" y="214" font-family="'DM Sans', sans-serif" font-size="62" font-weight="700" fill="#dceadc" text-anchor="middle">meetup</text>
+      <rect x="225" y="221" width="170" height="32" rx="16" fill="#00ff41"/>
+      <text x="310" y="242" font-family="'Space Mono', monospace" font-size="14" font-weight="700" letter-spacing="5" fill="#0a0d0a" text-anchor="middle">MAINZ</text>
+    </svg>
+  </div>
+
+  <p class="hero-tagline">
+    Für alle, die mit IT-Security arbeiten – <em>technisch oder strategisch</em>.<br>
+    Kein Sales. Keine Vorträge. Echter Austausch.
+  </p>
+
+  <div class="hero-chips">
+    <div class="chip">
+      <span class="icon">📅</span>
+      <div>
+        <span class="label">Datum</span>
+        Do, 26. März 2026
+      </div>
+    </div>
+    <div class="chip">
+      <span class="icon">📍</span>
+      <div>
+        <span class="label">Ort</span>
+        Mainz · Zentrale Lage
+      </div>
+    </div>
+    <div class="chip">
+      <span class="icon">💸</span>
+      <div>
+        <span class="label">Eintritt</span>
+        Kostenlos
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cta-group">
+    <a href="https://pretix.eu/securitymeetup/mainz-maerz-26/" target="_blank" rel="noopener" class="btn-primary">
+      Jetzt kostenlos anmelden <span class="arrow">→</span>
+    </a>
+    <a href="#about" class="btn-ghost">Mehr erfahren</a>
+  </div>
+
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">Was ist das hier</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-headline">
+        Security-Gespräche<br>ohne <span>Bullshit</span>.
+      </h2>
+      <div class="about-text">
+        <p>Das Security Meetup Mainz ist ein <strong>informelles Treffen für Menschen aus der IT-Security</strong> – ob technisch tief im Stack oder auf Managementebene.</p>
+        <p>Kein Konferenzformat. Keine Bühne. Keine Sponsorenpräsentationen. Stattdessen: ein gutes Restaurant, ein Tisch, und Gespräche unter Peers, die wirklich was zu sagen haben.</p>
+        <p>Wir treffen uns regelmäßig in Mainz – weil Security nicht nur in großen Städten passiert, und weil echter Austausch mehr bringt als jede Keynote.</p>
+      </div>
+    </div>
+    <div class="principle-list">
+      <div class="principle">
+        <span class="principle-icon">🚫</span>
+        <div>
+          <div class="principle-title">Kein Sales</div>
+          <div class="principle-desc">Keine Pitch-Decks, keine Vendor-Demos, kein «Und unser Produkt kann dann…». Wer verkaufen will, ist falsch hier.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-icon">🎤</span>
+        <div>
+          <div class="principle-title">Keine Vorträge</div>
+          <div class="principle-desc">Gespräche statt Präsentationen. Was am Tisch besprochen wird, gehört dem Tisch. Chatham House gilt.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-icon">🤝</span>
+        <div>
+          <div class="principle-title">Peers unter sich</div>
+          <div class="principle-desc">Alle am Tisch haben Skin in the Game. Security-Praktiker, Entscheider, Forscher – Menschen, die es wirklich machen.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="principle-icon">🍽️</span>
+        <div>
+          <div class="principle-title">Beim Essen</div>
+          <div class="principle-desc">Gutes Essen, gute Getränke. Entspannte Atmosphäre macht ehrlichere Gespräche möglich.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+<!-- FORMAT -->
+<section class="format" id="format">
+  <div class="format-header">
+    <div class="section-label">Das Format</div>
+    <h2 class="about-headline">Wie ein Abend abläuft</h2>
+  </div>
+  <div class="format-grid">
+    <div class="format-card">
+      <div class="format-num">01 /</div>
+      <h3>Ankommen</h3>
+      <p>Locker reinkommen, Platz suchen, erste Gespräche beginnen. Kein Programmpunkt, kein Moderator.</p>
+    </div>
+    <div class="format-card">
+      <div class="format-num">02 /</div>
+      <h3>Essen & Reden</h3>
+      <p>Am Tisch entwickeln sich Themen von selbst. Security-Incidents, Tool-Fragen, Karriere-Dilemmas – alles ist offen.</p>
+    </div>
+    <div class="format-card">
+      <div class="format-num">03 /</div>
+      <h3>Kein Zeitplan</h3>
+      <p>Der Abend endet, wenn er endet. Manche gehen früh, manche bleiben. Beide ist ok.</p>
+    </div>
+    <div class="format-card">
+      <div class="format-num">04 /</div>
+      <h3>Vertraulich</h3>
+      <p>Was besprochen wird, bleibt intern. Kein Live-Tweeting, kein öffentliches Zitieren ohne Erlaubnis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience" id="audience">
+  <div class="audience-header">
+    <div class="section-label" style="justify-content:center; margin-bottom:20px;">Für wen ist das</div>
+    <h2>By security people · for security people</h2>
+    <p style="margin-top:14px;">Du arbeitest mit Security – in irgendeiner Form. Das reicht.</p>
+  </div>
+  <div class="audience-tags">
+    <span class="a-tag highlight">Security Engineers</span>
+    <span class="a-tag">Penetration Tester</span>
+    <span class="a-tag highlight">CISOs & Security Manager</span>
+    <span class="a-tag">SOC Analysts</span>
+    <span class="a-tag">Cloud Security</span>
+    <span class="a-tag highlight">AppSec Engineers</span>
+    <span class="a-tag">Red & Blue Teamers</span>
+    <span class="a-tag">Security Architects</span>
+    <span class="a-tag">GRC & Compliance</span>
+    <span class="a-tag highlight">Security Researchers</span>
+    <span class="a-tag">DevSecOps</span>
+    <span class="a-tag">IAM Specialists</span>
+    <span class="a-tag">Threat Intelligence</span>
+    <span class="a-tag highlight">Security Founders</span>
+  </div>
+</section>
+
+<div class="section-divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+<!-- REGISTER -->
+<section class="register" id="register">
+  <div class="register-inner">
+    <div class="section-label" style="justify-content:center; margin-bottom:20px;">Jetzt anmelden</div>
+    <h2 class="register-headline">
+      Dabei sein.<br><span>Kostenlos.</span>
+    </h2>
+    <p class="register-sub">
+      Plätze sind begrenzt – damit der Tisch überschaubar bleibt.<br>
+      Anmeldung über Pretix, dauert 60 Sekunden.
+    </p>
+
+    <div class="pretix-box">
+      <div class="free-badge">✓ Eintritt kostenlos</div>
+      <div class="pretix-url">
+        $ anmelden pretix.eu/securitymeetup/mainz-maerz-26<span class="blinking-cursor"></span>
+      </div>
+      <a href="https://pretix.eu/securitymeetup/mainz-maerz-26/" target="_blank" rel="noopener" class="btn-primary">
+        Ticket sichern <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <div class="register-note">
+      DO · 26. MÄRZ 2026 · MAINZ · ZENTRALE LAGE · KOSTENFREI<br>
+      SECURITY MEETUP MAINZ · FOR SECURITY PEOPLE
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SECURITY MEETUP MAINZ</div>
+  <div class="footer-right">
+    securitymeetup.de<br>
+    <span style="color:var(--muted2); font-size:9px;">By security people · for security people</span>
+  </div>
+</footer>
+
+<script>
+  // Smooth reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.format-card, .principle, .a-tag').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
