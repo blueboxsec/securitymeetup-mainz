@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerklärung · Security Meetup Mainz</title>
+  <meta name="description" content="Datenschutzerklärung des Security Meetup Mainz">
+  <meta name="robots" content="noindex, follow">
+
+  <style>
+    @font-face { font-family: 'DM Sans'; font-weight: 400; font-style: normal; font-display: swap; src: url('dm-sans-400.woff2') format('woff2'); }
+    @font-face { font-family: 'DM Sans'; font-weight: 500; font-style: normal; font-display: swap; src: url('dm-sans-500.woff2') format('woff2'); }
+    @font-face { font-family: 'DM Sans'; font-weight: 700; font-style: normal; font-display: swap; src: url('dm-sans-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Space Mono'; font-weight: 400; font-style: normal; font-display: swap; src: url('space-mono-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Space Mono'; font-weight: 700; font-style: normal; font-display: swap; src: url('space-mono-700.woff2') format('woff2'); }
+
+    :root {
+      --bg: #0a0d0a;
+      --surface: #111511;
+      --border: #1f2b1f;
+      --border2: #2a362a;
+      --accent: #00ff41;
+      --text: #dceadc;
+      --muted: #5a735a;
+      --muted2: #3d503d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,65,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,65,0.018) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: rgba(10,13,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 140px 32px 80px;
+      flex: 1;
+    }
+
+    .page-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .page-eyebrow::before {
+      content: '// ';
+      opacity: 0.5;
+    }
+
+    h1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
+
+    .section {
+      margin-bottom: 36px;
+    }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-label::before {
+      content: '// ';
+      opacity: 0.5;
+    }
+    .section p {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .section p + p { margin-top: 12px; }
+
+    .section a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .section a:hover { opacity: 0.8; }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 8px;
+    }
+    .section li {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.75;
+      padding-left: 18px;
+      position: relative;
+    }
+    .section li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .placeholder {
+      display: inline-block;
+      padding: 1px 8px;
+      background: rgba(0,255,65,0.08);
+      border: 1px dashed var(--accent);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+
+    .stand {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 36px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted2);
+    }
+    .footer-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted2);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--accent); }
+    .footer-right {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--muted2);
+      letter-spacing: 0.1em;
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      main { padding: 120px 20px 60px; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Security Meetup Mainz</a>
+  <a href="index.html" class="nav-back">← Zurück</a>
+</nav>
+
+<main>
+  <div class="page-eyebrow">Rechtliches</div>
+  <h1>Datenschutzerklärung</h1>
+
+  <div class="section">
+    <div class="section-label">Verantwortlicher</div>
+    <p>Verantwortlicher im Sinne der DSGVO ist:</p>
+    <p>Axel Rengstorf<br>
+       Kaiser-Wilhelm-Ring 70<br>
+       55118 Mainz<br>
+       E-Mail: <a href="mailto:ar@bluebox-security.de">ar@bluebox-security.de</a></p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Allgemeines</div>
+    <p>Diese Seite ist eine reine Informationsseite zum Security Meetup Mainz. Es gibt kein Nutzerkonto, kein Kommentarsystem, kein Tracking und keine Werbe-Cookies. Personenbezogene Daten werden nur in dem Umfang verarbeitet, der für den Betrieb der Website und die Anmeldung zum Meetup technisch erforderlich ist.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Hosting</div>
+    <p>Die Website wird gehostet bei <span class="placeholder">Hosting-Anbieter eintragen</span>. Beim Aufruf der Seite werden technisch notwendige Verbindungsdaten an den Server übertragen (siehe „Server-Logfiles"). Mit dem Hoster besteht ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">SSL-/TLS-Verschlüsselung</div>
+    <p>Diese Seite nutzt aus Sicherheitsgründen eine SSL-/TLS-Verschlüsselung. Erkennbar ist eine verschlüsselte Verbindung am „https://"-Präfix in der Adresszeile des Browsers. Daten, die zwischen Browser und Server übertragen werden, können nicht von Dritten mitgelesen werden.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Server-Logfiles</div>
+    <p>Beim Aufruf der Website werden automatisch Informationen erfasst, die der Browser übermittelt. Diese sind:</p>
+    <ul>
+      <li>IP-Adresse des anfragenden Geräts</li>
+      <li>Datum und Uhrzeit der Anfrage</li>
+      <li>Aufgerufene URL und HTTP-Statuscode</li>
+      <li>Übertragene Datenmenge</li>
+      <li>Referrer-URL (zuvor besuchte Seite)</li>
+      <li>Browser-Typ, -Version und Betriebssystem</li>
+    </ul>
+    <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am technisch fehlerfreien Betrieb und an der Sicherheit der Website). Die Daten werden nach spätestens 14 Tagen gelöscht, sofern nicht ein sicherheitsrelevanter Vorfall eine längere Speicherung erforderlich macht.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Anmeldung über Pretix</div>
+    <p>Die Anmeldung zum Meetup erfolgt über die externe Plattform Pretix (pretix eu GmbH, Berlin). Mit Klick auf „Jetzt anmelden" wirst du auf <a href="https://pretix.eu/securitymeetup/mainz-mai-26/" target="_blank" rel="noopener">pretix.eu</a> weitergeleitet. Ab diesem Zeitpunkt gilt die Datenschutzerklärung von Pretix. Die Anmeldedaten (Name, E-Mail) verarbeitet Pretix in unserem Auftrag; ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO ist abgeschlossen. Wir erhalten von Pretix nur die für die Veranstaltungsdurchführung notwendigen Daten.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Schriftarten</div>
+    <p>Die verwendeten Schriftarten (DM Sans, Space Mono) sind lokal auf dem Server gehostet. Es findet <em>keine</em> Verbindung zu Google-Servern oder anderen Drittanbietern statt, wenn du diese Seite besuchst.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Cookies</div>
+    <p>Diese Website setzt keine Cookies und nutzt keinerlei Analyse-, Tracking- oder Marketing-Tools.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Externe Links</div>
+    <p>Diese Seite enthält Links zu externen Websites (insbesondere Pretix und securitymeetup.de). Auf die Inhalte und das Datenschutzverhalten dieser externen Seiten haben wir keinen Einfluss. Bitte beachte die jeweiligen Datenschutzerklärungen der verlinkten Seiten.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Deine Rechte</div>
+    <p>Du hast nach der DSGVO folgende Rechte:</p>
+    <ul>
+      <li>Auskunft über deine gespeicherten Daten (Art. 15)</li>
+      <li>Berichtigung unrichtiger Daten (Art. 16)</li>
+      <li>Löschung deiner Daten (Art. 17)</li>
+      <li>Einschränkung der Verarbeitung (Art. 18)</li>
+      <li>Datenübertragbarkeit (Art. 20)</li>
+      <li>Widerspruch gegen die Verarbeitung (Art. 21)</li>
+    </ul>
+    <p>Für die Ausübung dieser Rechte genügt eine formlose E-Mail an <a href="mailto:ar@bluebox-security.de">ar@bluebox-security.de</a>.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Beschwerderecht</div>
+    <p>Unabhängig davon hast du das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig ist:</p>
+    <p>Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz<br>
+       Hintere Bleiche 34<br>
+       55116 Mainz<br>
+       <a href="https://www.datenschutz.rlp.de" target="_blank" rel="noopener">www.datenschutz.rlp.de</a></p>
+  </div>
+
+  <div class="stand">Stand: Mai 2026</div>
+</main>
+
+<footer>
+  <div class="footer-logo">SECURITY MEETUP MAINZ</div>
+  <a class="footer-link" href="index.html">Zur Startseite</a>
+  <div class="footer-right">
+    securitymeetup.de<br>
+    <span style="color:var(--muted2); font-size:9px;">By security people · for security people</span>
+  </div>
+</footer>
+
+</body>
+</html>
