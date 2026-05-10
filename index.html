@@ -719,6 +719,19 @@
     text-align: right;
   }
 
+  .footer-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted2);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-link:hover {
+    color: var(--accent);
+  }
+
   /* ANIMATIONS */
   @keyframes glow-pulse {
     0%, 100% { opacity: 0.6; }
@@ -979,7 +992,7 @@
   <div class="hero-network">Der Mainzer Tisch im <a href="https://securitymeetup.de" target="_blank" rel="noopener">securitymeetup.de</a> Netzwerk</div>
 
   <p class="hero-tagline">
-    Für alle, die mit IT-Security arbeiten – <em>technisch oder strategisch</em>.<br>
+    Das Treffen für alle, die mit IT-Security arbeiten – <em>technisch oder strategisch</em>.<br>
     Kein Sales. Keine Vorträge. Echter Austausch.
   </p>
 
@@ -1241,6 +1254,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">SECURITY MEETUP MAINZ</div>
+  <a class="footer-link" href="impressum.html">Impressum</a>
   <div class="footer-right">
     securitymeetup.de<br>
     <span style="color:var(--muted2); font-size:9px;">By security people · for security people</span>
