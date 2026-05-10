@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum · Security Meetup Mainz</title>
+  <meta name="description" content="Impressum des Security Meetup Mainz">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0d0a;
+      --surface: #111511;
+      --border: #1f2b1f;
+      --border2: #2a362a;
+      --accent: #00ff41;
+      --text: #dceadc;
+      --muted: #5a735a;
+      --muted2: #3d503d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* GRID BG */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,65,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,65,0.018) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: rgba(10,13,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    /* MAIN */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 140px 32px 80px;
+      flex: 1;
+    }
+
+    .page-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .page-eyebrow::before {
+      content: '// ';
+      opacity: 0.5;
+    }
+
+    h1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
+
+    .section {
+      margin-bottom: 36px;
+    }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: '// ';
+      opacity: 0.5;
+    }
+    .section p {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .section a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .section a:hover { opacity: 0.8; }
+
+    .legal {
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .legal h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+    .legal h3:first-child { margin-top: 0; }
+    .legal p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 36px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted2);
+    }
+    .footer-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted2);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--accent); }
+    .footer-right {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--muted2);
+      letter-spacing: 0.1em;
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      main { padding: 120px 20px 60px; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Security Meetup Mainz</a>
+  <a href="index.html" class="nav-back">← Zurück</a>
+</nav>
+
+<main>
+  <div class="page-eyebrow">Rechtliches</div>
+  <h1>Impressum</h1>
+
+  <div class="section">
+    <div class="section-label">Angaben gemäß §5 DDG</div>
+    <p>Axel Rengstorf<br>
+       Kaiser-Wilhelm-Ring 70<br>
+       55118 Mainz</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Kontakt</div>
+    <p>E-Mail: <a href="mailto:ar@bluebox-security.de">ar@bluebox-security.de</a></p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Verantwortlich für den Inhalt nach §18 Abs. 2 MStV</div>
+    <p>Axel Rengstorf (Anschrift wie oben)</p>
+  </div>
+
+  <div class="legal">
+    <h3>Haftung für Inhalte</h3>
+    <p>Als Diensteanbieter bin ich gemäß §7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG bin ich als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+
+    <h3>Haftung für Links</h3>
+    <p>Diese Seite enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft; rechtswidrige Inhalte waren nicht erkennbar.</p>
+
+    <h3>Urheberrecht</h3>
+    <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors. Beiträge Dritter sind als solche gekennzeichnet.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">SECURITY MEETUP MAINZ</div>
+  <a class="footer-link" href="index.html">Zur Startseite</a>
+  <div class="footer-right">
+    securitymeetup.de<br>
+    <span style="color:var(--muted2); font-size:9px;">By security people · for security people</span>
+  </div>
+</footer>
+
+</body>
+</html>
